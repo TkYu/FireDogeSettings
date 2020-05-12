@@ -1,0 +1,251 @@
+{
+  "UI": {
+    "ActionNames": {
+      "append-command": "附加參數",
+      "base-setting": "雜項設定",
+      "check-update": "Firefox/FireDoge 更新",
+      "end-run": "關閉時執行",
+      "gesture-action": "手勢清單",
+      "gesture-sync": "手勢同步",
+      "hosts": "Hosts",
+      "key-transform": "按鍵轉換",
+      "mouse-gesture": "滑鼠手勢",
+      "start-run": "啟動時執行",
+      "ui-enhance": "介面強化"
+    },
+    "ParamNames": {
+      "SendKeys": "傳送按鍵",
+      "Window": "視窗控制",
+      "OpenUrl": "開啟網址",
+      "RunApp": "開啟程式",
+      "CopyToClipboard": "複製至剪貼簿",
+      "Min": "最小化",
+      "Max": "最大化/還原",
+      "Topmost": "最上層顯示/取消最上層顯示",
+      "CurrURL": "目前網頁URL",
+      "CurrDir": "目前程式目錄",
+      "CurrTimestamp": "目前時間戳"
+    },
+    "Controls": {
+      "AppendCommand": {
+        "description": "這裡自訂的<a href=\"https://developer.mozilla.org/zh-TW/docs/Mozilla/Command_Line_Options\" target=\"_blank\">Firefox指令行參數</a>，可在Firefox啟動時自動插入",
+        "name": "附加參數"
+      },
+      "BlankNewTabChecked": {
+        "description": "可以去除新分頁中最常造訪網站的縮圖，並且保留主題效果",
+        "name": "空白的新分頁頁面"
+      },
+      "BookMarkNewTabChecked": {
+        "description": "在新分頁中開啟書籤",
+        "name": "新分頁中開啟書籤"
+      },
+      "BossKey": {
+        "description": "按下老闆鍵後可隱藏所有瀏覽器視窗，再次按下即可還原",
+        "name": "老闆鍵："
+      },
+      "Branch": {
+        "description": "要檢查更新的分支",
+        "name": "更新版本：",
+        "Stable": "穩定版 Stable",
+        "Beta": "測試版 Beta",
+        "Dev": "開發版 Dev",
+        "Nightly": "毎晩 Nightly",
+        "ESR": "長期支援 ESR"
+      },
+      "DPI": {
+        "description": "如果介面強化功能異常，顯示縮放不是100%的使用者，應該變更為系統DPI",
+        "name": "系統DPI："
+      },
+      "DisableWebConfig": {
+        "description": "關閉Web設定功能",
+        "name": "停用WEB設定"
+      },
+      "DoubleClickCloseTabChecked": {
+        "description": "直接在分頁上按兩下就可以關閉頁面",
+        "name": "按兩下關閉分頁"
+      },
+      "EndRun": {
+        "description": "這裡的程式會在Firefox關閉時啟動（例如執行 taskkill 指令結束處理程序）",
+        "name": "關閉時執行"
+      },
+      "FrontNewTabChecked": {
+        "description": "介面強化",
+        "name": "前景開啟新分頁"
+      },
+      "GestureResultChecked": {
+        "description": "是否顯示辨識結果",
+        "name": "顯示結果"
+      },
+      "GestureSensitive": {
+        "description": "數值越低成功率越高但錯誤率也高，反之亦然",
+        "name": "靈敏度："
+      },
+      "GestureTrackChecked": {
+        "description": "是否顯示手勢軌跡",
+        "name": "顯示軌跡"
+      },
+      "HandleMenuChecked": {
+        "description": "嘗試處理透過選單開啟書籤，如有副作用請關閉",
+        "name": "處理彈出選單"
+      },
+      "HostsDownload": {
+        "description": "",
+        "name": "訂閱："
+      },
+      "HostsPath": {
+        "description": "",
+        "name": "儲存位置"
+      },
+      "HostsSwitchChecked": {
+        "description": "啟用後才會開啟hosts功能",
+        "name": "啟用"
+      },
+      "HoverActivateTabChecked": {
+        "description": "滑鼠暫留在分頁上一定時間之後將會自動啟用分頁",
+        "name": "滑鼠暫留時啟用分頁"
+      },
+      "HoverActivateTabDelay": {
+        "description": "滑鼠暫留多久時間之後啟用分頁，單位為毫秒",
+        "name": "暫留時間："
+      },
+      "HoverTabSwitchChecked": {
+        "description": "滑鼠暫留在分頁列時，滾動滾輪可切換分頁",
+        "name": "在分頁列使用滑鼠滾輪切換分頁"
+      },
+      "KeepLastTabChecked": {
+        "description": "透過新增一個分頁實現，請注意在手動點選關閉按鈕時無法阻止",
+        "name": "防止關閉最後的分頁時關閉整個瀏覽器"
+      },
+      "KeyIgnoreEditChecked": {
+        "description": "即使游標在編輯框中依然轉換按鍵",
+        "name": "忽略編輯框"
+      },
+      "KeyRepeatChecked": {
+        "description": "按下按鍵不放開，是否重複辨識",
+        "name": "辨識重複"
+      },
+      "KeyTransformChecked": {
+        "description": "啟用後才會轉換按鍵",
+        "name": "啟用"
+      },
+      "KillAtEndChecked": {
+        "description": "在Firefox關閉時自動結束這些程式",
+        "name": "自動結束執行程式"
+      },
+      "MakePortableChecked": {
+        "description": "開啟可以防止更換電腦與重裝系統時個人設定遺失",
+        "name": "可攜化"
+      },
+      "MouseGestureChecked": {
+        "description": "關閉後才能使用擴充功能的滑鼠手勢（還要關閉<a href=\"#right-tab-switch\">右鍵快速分頁切換</a>）",
+        "name": "啟用"
+      },
+      "MouseGestureColor": {
+        "description": "",
+        "name": "手勢色彩："
+      },
+      "NotBlankTabChecked": {
+        "description": "目前頁面是新分頁時，上面兩個選項（新分頁中開啟書籤、新分頁中開啟網址）不生效",
+        "name": "目前頁面是新分頁時不生效"
+      },
+      "OpenUrlNewTabChecked": {
+        "description": "網址列輸入的網址在新分頁中開啟（透過監控 Enter 鍵）",
+        "name": "新分頁中開啟網址"
+      },
+      "RemoveDevelopErrorChecked": {
+        "description": "如果使用開發者模式載入擴充功能，開啟firefox的時候會有警告，此選項可以關閉警告",
+        "name": "移除開發者模式警告"
+      },
+      "RemoveUpdateErrorChecked": {
+        "description": "離線安裝包不包含更新程式，開啟Firefox關於頁面時會有更新失敗提示，此選項可關閉失敗提示",
+        "name": "移除更新錯誤"
+      },
+      "RightClickCloseTabChecked": {
+        "description": "開啟此選項時，按住 <kbd>SHIFT</kbd> 再點選右鍵可以彈出選單",
+        "name": "右鍵關閉分頁"
+      },
+      "RightTabSwitchChecked": {
+        "description": "按住滑鼠右鍵時，滾動滾輪可切換分頁（這個功能會影響擴充功能的滑鼠手勢，但FireDoge手勢不受影響）",
+        "name": "右鍵快速分頁切換"
+      },
+      "StartRun": {
+        "description": "這裡的程式會隨Firefox一起啟動，如果路徑（包括變數展開後）包含空格，需要用雙引號括起來",
+        "name": "啟動時執行"
+      },
+      "SyncToken": {
+        "description": "輸入手勢同步Token可以在不同裝置之間同步手勢",
+        "name": "手勢同步Token"
+      },
+      "TrackArrowChecked": {
+        "description": "手勢軌跡是否繪製為箭頭",
+        "name": "軌跡箭頭"
+      },
+      "TrackThickness": {
+        "description": "滑鼠手勢的軌跡粗細",
+        "name": "軌跡粗細："
+      },
+      "TrainingModeChecked": {
+        "description": "啟用時遇到無法辨識的手勢將會新增為新手勢",
+        "name": "學習模式"
+      },
+      "TransformList": {
+        "description": "啟用後才會轉換按鍵",
+        "name": "按鍵轉換"
+      }
+    },
+    "InnerTexts": {
+      "AppendCommandL1": "這裡自訂的<a href=\"https://developer.mozilla.org/zh-TW/docs/Mozilla/Command_Line_Options\" target=\"_blank\">Firefox指令行參數</a>，可在Firefox啟動時自動插入",
+      "AppendCommandL2": "輸入您要附加的參數",
+      "EndRunL1": "這裡的程式會在瀏覽器關閉時啟動（隱藏執行，用於執行一些清理工作，例如執行taskkill指令結束處理程序）",
+      "EndRunL2": "輸入您要關閉時執行的程式",
+      "HelloL1": "如果喜歡FireDoge，可以前往 <a class=\"alert-link\" href=\"https://github.com/TkYu/FireDoge\" target=\"_blank\">GitHub</a> 給一個like",
+      "HelloL2": "路徑支援 <code>%appdata%</code> 這樣的環境變數，特別的 <code>%app%</code> 代表程式目前所在目錄",
+      "HelloL3": "部分設定需要重啟瀏覽器才能生效，刪除 FireDoge.ini 可以重設為預設設定",
+      "HelloL4": "本頁翻譯由：<a class=\"alert-link\" href=\"https://goo.gl/Fjz3v8\" target=\"_blank\">道滿(ZHTW)</a> 提供",
+      "HelloL5": "點我開啟 FireDoge.ini 所在的資料夾",
+      "HelloL6": "點我重新啟動Firefox",
+      "StartRunL1": "這裡的程式會隨瀏覽器一起啟動，<span style=\"color: red\">如果路徑（包括變數展開後）包含空格，需要用雙引號括起來</span>",
+      "StartRunL2": "輸入您要啟動時執行的程式",
+      "TransListL1": "自訂<kbd>F3=Ctrl+Tab</kbd>即可在按下<kbd>F3</kbd>時變為<kbd>Ctrl+Tab</kbd>",
+      "TransListL2": "輸入您要轉換的按鍵",
+      "GestureL1": "請先在上方開啟滑鼠手勢",
+      "HostsL1": "網友提供的hosts下載位址，hosts檔案可以提供域名到IP的對應關係，這個功能不會影響系統hosts，如果還是無法造訪某些網站，請聯絡hosts提供者回報。<span style=\"color: black;\">程式每天會更新hosts一次</span>",
+      "UpdateL1": "您目前使用的 <span style=\"color: blue\">{{product}}</span>({{version}}) 線上版本為：<span style=\"color: green\">{{nversion}}</span>"
+    },
+    "PText": {
+      "alertAddNew": "手勢辨識已關閉，請開始繪製手勢，接下來畫出的手勢將會被新增。請注意和已有手勢保持差異，否則會影響手勢辨識率。新增完成之後點選確定按鈕重新整理清單。",
+      "alertUnavailable": "你現在無法透過本介面變更FireDoge設定 請注意檢查：是否開啟全域代理、VPN 是否被防毒軟體、防火牆封鎖 是否被去廣告擴充功能、軟體封鎖。",
+      "alertUpdate": "FireDoge已有新版本，是否請前往  https://github.com/TkYu/FireDoge/releases 取得最新版？",
+      "alertExportDiag": "點選確定按鈕您將匯出目前 FireDoge環境的診斷資訊，請您在上傳該檔案之前檢查並確保裡面未包含您不想公佈的隱私資料！",
+      "alertCancelButtonText": "取消",
+      "alertSaveButtonText": "儲存",
+      "alertOkButtonText": "確定",
+      "alertTitle": "請注意",
+      "toastSaved": "設定已儲存！",
+      "toastSaveFailed": "儲存失敗！"
+    },
+    "SectionNames": {
+      "Basic": "基礎設定",
+      "Enhancement": "手勢強化",
+      "Others": "其他",
+      "StartEnd": "啟動/關閉"
+    },
+    "ButtonText": {
+      "Add": "新增",
+      "AddGesture": "新增手勢",
+      "ExportDiagnostic": "匯出診斷報告",
+      "Sync": "同步",
+      "Update": "點我更新"
+    },
+    "Title": "設定FireDoge",
+    "GestureEdit": {
+      "Title": "編輯手勢",
+      "Close": "關閉視窗",
+      "Param": "參數",
+      "Shortcut": "快速鍵",
+      "WindowParam": "視窗參數",
+      "GestureName": "手勢名稱",
+      "GestureAction": "手勢動作"
+    }
+  }
+}

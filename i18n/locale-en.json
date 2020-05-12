@@ -1,0 +1,251 @@
+{
+  "UI": {
+    "ActionNames": {
+      "append-command": "Append parameter",
+      "base-setting": "Miscellaneous Settings",
+      "check-update": "Firefox / FireDoge Update",
+      "end-run": "Run when closed",
+      "gesture-action": "Gesture list",
+      "gesture-sync": "Gesture synchronization",
+      "hosts": "Hosts table",
+      "key-transform": "Key conversion",
+      "mouse-gesture": "Mouse gesture",
+      "start-run": "Run at startup",
+      "ui-enhance": "UI enhancement"
+    },
+    "ParamNames": {
+      "SendKeys": "Send keys",
+      "Window": "Window control",
+      "OpenUrl": "Open URL",
+      "RunApp": "Run program",
+      "CopyToClipboard": "Copy to clipboard",
+      "Min": "Minimize",
+      "Max": "Maximize/Restore",
+      "Topmost": "Pinned/Unpinned",
+      "CurrURL": "Current page URL",
+      "CurrDir": "Current program directory",
+      "CurrTimestamp": "Current timestamp"
+    },
+    "Controls": {
+      "AppendCommand": {
+        "description": "The <a href=\"https://developer.mozilla.org/en-US/docs/Mozilla/Command_Line_Options\" target=\"_blank\">Firefox command line parameters</a>defined here , Can be inserted automatically when Firefox starts.",
+        "name": "Additional parameters"
+      },
+      "BlankNewTabChecked": {
+        "description": "You can remove the most frequently accessed thumbnails, and keep the theme effect",
+        "name": "Blank new tab page"
+      },
+      "BookMarkNewTabChecked": {
+        "description": "Open bookmarks in new tab",
+        "name": "New label open bookmarks"
+      },
+      "BossKey": {
+        "description": "All browser windows can be hidden after pressing the boss key, press again to restore",
+        "name": "Boss key:"
+      },
+      "Branch": {
+        "description": "Branch to check for updates",
+        "name": "Updated version:",
+        "Stable": "Stable",
+        "Beta": "Beta",
+        "Dev": "Dev",
+        "Nightly": "Nightly",
+        "ESR": "ESR"
+      },
+      "DPI": {
+        "description": "If the user interface enhances abnormally and shows that the zoom is not 100%, it should be changed to system DPI",
+        "name": "System DPI:"
+      },
+      "DisableWebConfig": {
+        "description": "Turn off this web setting function",
+        "name": "Disable Web Settings"
+      },
+      "DoubleClickCloseTabChecked": {
+        "description": "Double-click on the label to close the page",
+        "name": "double-click close tab"
+      },
+      "EndRun": {
+        "description": "\"The program here will start when Firefox is closed (for example by running the taskkill command to end the process)",
+        "name": "Run when closed"
+      },
+      "FrontNewTabChecked": {
+        "description": "Interface Enhancement",
+        "name": "Open a new label in the foreground"
+      },
+      "GestureResultChecked": {
+        "description": "whether to display the recognition result",
+        "name": "show results"
+      },
+      "GestureSensitive": {
+        "description": "The lower the value the higher the success rate but the higher the error rate, and vice versa.",
+        "name": "Sensitivity:"
+      },
+      "GestureTrackChecked": {
+        "description": "whether to display the gesture track",
+        "name": "show track"
+      },
+      "HandleMenuChecked": {
+        "description": "Try to open bookmark via menu, please close if there is any side effect",
+        "name": "Processing pop-up menu"
+      },
+      "HostsDownload": {
+        "description": "",
+        "name": "Subscribe:"
+      },
+      "HostsPath": {
+        "description": "",
+        "name": "save location"
+      },
+      "HostsSwitchChecked": {
+        "description": "hosts will be opened only when enabled",
+        "name": "Enabled"
+      },
+      "HoverActivateTabChecked": {
+        "description": "Hovering the tab over a certain period of time will automatically activate the tab.",
+        "name": "Hover activation tab"
+      },
+      "HoverActivateTabDelay": {
+        "description": "How long after hover activation tab, in milliseconds",
+        "name": "Hover time:"
+      },
+      "HoverTabSwitchChecked": {
+        "description": "scroll the wheel to switch between tabs when hovering over the tab bar",
+        "name": "hover fast label switch"
+      },
+      "KeepLastTabChecked": {
+        "description": "By creating a new tag, notice that you can not block it when you click the close button manually.",
+        "name": "prevent closing the entire browser when closing the last label"
+      },
+      "KeyIgnoreEditChecked": {
+        "description": "Even if the cursor is still in the edit box conversion button",
+        "name": "Ignore edit box"
+      },
+      "KeyRepeatChecked": {
+        "description": "Press the button does not let go, whether to repeat recognition",
+        "name": "Identify duplicates"
+      },
+      "KeyTransformChecked": {
+        "description": "Convert button only when enabled",
+        "name": "Enabled"
+      },
+      "KillAtEndChecked": {
+        "description": "End these programs automatically when Firefox is closed",
+        "name": "End program automatically"
+      },
+      "MakePortableChecked": {
+        "description": "Turn on to prevent computer replacement, loss of personal settings when reinstalling the system. <span style=\"color: red\">Once user data has been generated, modifying this option will cause personal settings to be reset</span>",
+        "name": "Portable"
+      },
+      "MouseGestureChecked": {
+        "description": "A mouse gesture with the extension disabled (with the <a href=\"#right-tab-switch\"> right-click quick tab switch </a> also turned off)",
+        "name": "Enabled"
+      },
+      "MouseGestureColor": {
+        "description": "",
+        "name": "Gesture color:"
+      },
+      "NotBlankTabChecked": {
+        "description": "When the current page is a new tab, the above two options (open a bookmark in a new tab and open a URL in a new tab) will not take effect",
+        "name": "new tab does not take effect"
+      },
+      "OpenUrlNewTabChecked": {
+        "description": "The URL entered in the address bar opens in a new tab (via the Enter key)",
+        "name": "new label open url"
+      },
+      "RemoveDevelopErrorChecked": {
+        "description": "If you use developer mode to load an extension, there is a warning when opening Firefox. This option turns off the warning.",
+        "name": "Remove Developer Mode Warning"
+      },
+      "RemoveUpdateErrorChecked": {
+        "description": "Offline package without update, click on Firefox will be updated when there is an error message, this option can be closed error message",
+        "name": "remove update error"
+      },
+      "RightClickCloseTabChecked": {
+        "description": "Turn on this option, hold down <kbd>SHIFT</kbd> and then right-click to restore the open menu",
+        "name": "right click close tab"
+      },
+      "RightTabSwitchChecked": {
+        "description": "Hold down the right mouse button, scroll the wheel to switch labels (this feature will affect the mouse gesture of the extension, but FireDoge gestures are not affected)",
+        "name": "right-click quick label switch"
+      },
+      "StartRun": {
+        "description": "The program here will start with Firefox, and if the path (including variables) contains spaces, enclose it in double quotes",
+        "name": "Run at startup"
+      },
+      "SyncToken": {
+        "description": "Enter Gesture Sync Token to sync gestures between different devices",
+        "name": "Gesture Sync Token"
+      },
+      "TrackArrowChecked": {
+        "description": "whether the gesture track is drawn as an arrow",
+        "name": "track arrow"
+      },
+      "TrackThickness": {
+        "description": "Track thickness of the mouse gesture",
+        "name": "track thickness:"
+      },
+      "TrainingModeChecked": {
+        "description": "An unrecognized gesture will be added as a new gesture when enabled.",
+        "name": "learning mode"
+      },
+      "TransformList": {
+        "description": "Convert button only when enabled",
+        "name": "Button conversion"
+      }
+    },
+    "InnerTexts": {
+      "AppendCommandL1": "The <a href=\"https://goo.gl/ECUv1K\" target=\"_blank\">Firefox command line parameters</a>defined here Can be inserted automatically when Firefox starts",
+      "AppendCommandL2": "Enter the parameters you want to append",
+      "EndRunL1": "The program here will start when the browser is closed (hidden execution, for some cleanup work, such as running the taskkill command to end the process)",
+      "EndRunL2": "Enter the program you want to shut down when running",
+      "HelloL1": "If you like FireDoge, you can <a class=\"alert-link\" href=\"https://github.com/TkYu/FireDoge\" target=\"_blank\">give me a star</a>",
+      "HelloL2": "his environment variable supports <code>%appdata%</code> in the path. The special <code>%app%</code> represents the directory where the program is currently located",
+      "HelloL3": "some settings need to restart the browser to take effect, delete FireDoge.ini can be reset to the default settings",
+      "HelloL4": "This page translate by <a class=\"alert-link\" href=\"https://translate.google.com/\" target=\"_blank\">Google Translate</a>",
+      "HelloL5": "Click me open the folder where FireDoge.ini is located",
+      "HelloL6": "Click me restart Firefox",
+      "StartRunL1": "The program will start with the browser,<span style=\"color: red\">if the path (including variables expanded) contains spaces, enclosed in double quotes</span>",
+      "StartRunL2": "Enter the program you want to run at startup",
+      "TransListL1": "Define <kbd>F3=Ctrl+Tab</kbd>to change to<kbd>F3</kbd> when <kbd>Ctrl+Tab</kbd>",
+      "TransListL2": "Enter the button you want to convert",
+      "GestureL1": "Please turn on the mouse gesture at the top",
+      "HostsL1": "hosts provide users download address, hosts file can provide the domain name to IP mapping, this feature will not affect the system hosts, if you still can not access some sites, please contact the hosts provider feedback.<span style=\"color: black;\">The program will update hosts once a day</span>",
+      "UpdateL1": "Your currently used <span style=\"color: blue\">{{product}}</span>({{version}}) online version is: <span style=\"color: green\">{{nversion}}</span>"
+    },
+    "PText": {
+      "alertAddNew": "gesture recognition is closed, please start to draw the gesture, then draw the gesture will be added .Please note the difference with the existing gestures, or it will affect the gesture recognition rate.After adding, click the OK button to refresh the list . ",
+      "alertUnavailable": "You can not modify the FireDoge settings through this interface. Please check whether the global proxy is enabled, whether the VPN is anti-virus software, whether the firewall intercept is extended by advertisement, or intercepted by the software.",
+      "alertUpdate": "There is a new version of FireDoge, please go to https://github.com/TkYu/FireDoge/releases to get the latest version?",
+      "alertExportDiag": "Click the OK button You will export the diagnostic information of the current FireDoge environment, please check before you upload the file and make sure it does not contain the information you do not want to publish!",
+      "alertCancelButtonText": "Cancel",
+      "alertSaveButtonText": "Save",
+      "alertOkButtonText": "OK",
+      "alertTitle": "Please note",
+      "toastSaved": "Configuration saved!",
+      "toastSaveFailed": "failed to save!"
+    },
+    "SectionNames": {
+      "Basic": "Basic Settings",
+      "Enhancement": "Gesture Enhancement",
+      "Others": "Others",
+      "StartEnd": "Start/Stop"
+    },
+    "ButtonText": {
+      "Add": "New",
+      "AddGesture": "Add Gesture",
+      "ExportDiagnostic": "Export Diagnostic",
+      "Sync": "Sync",
+      "Update": "Click me update"
+    },
+    "Title": "FireDoge Config",
+    "GestureEdit": {
+      "Title": "Edit gesture",
+      "Close": "Close Window",
+      "Param": "Parameters",
+      "Shortcut": "Shortcut",
+      "WindowParam": "Form Parameters",
+      "GestureName": "Gesture Name",
+      "GestureAction": "Gesture Action"
+    }
+  }
+}

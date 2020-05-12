@@ -1,0 +1,63 @@
+<md-dialog aria-label="{{'UI.GestureEdit.Title' | translate}}" style="min-width:520px">
+<form ng-cloak>
+<md-toolbar>
+<div class="md-toolbar-tools">
+<h2 translate>UI.GestureEdit.Title</h2>
+<span flex></span>
+<md-button class="md-icon-button" ng-click="cancel()">
+<md-icon md-svg-src="img/ic_close_24px.svg" aria-label="{{'UI.GestureEdit.Close' | translate}}"></md-icon>
+</md-button>
+</div>
+</md-toolbar>
+<md-dialog-content>
+<div class="md-dialog-content">
+<md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px">
+<md-grid-tile md-rowspan="3" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1" style="background-color:rgba(144,144,144,.08)">
+<img width="89%" ng-src="data:image/png;base64,{{current.Image}}" style="border-radius:0">
+</md-grid-tile>
+<md-grid-tile md-rowspan="3" md-colspan="4" md-colspan-sm="1" md-colspan-xs="1">
+<div layout="column" style="min-width:100%">
+<div layout="column">
+<md-input-container class="md-block" style="margin:30px 0 0 0">
+<label translate>UI.GestureEdit.GestureName</label>
+<input ng-model="current.Name">
+</md-input-container>
+<md-input-container style="margin:10px 0 0 0">
+<label translate>UI.GestureEdit.GestureAction</label>
+<md-select ng-model="current.Action">
+<md-option ng-repeat="item in current.Actions" value="{{item.value}}" translate>{{'UI.ParamNames.'+item.name}}</md-option>
+</md-select>
+</md-input-container>
+<md-input-container style="margin:30px 0 0 0" ng-show="current.Action == 'Window'">
+<label translate>UI.GestureEdit.WindowParam</label>
+<md-select ng-model="current.WindowParam">
+<md-option ng-repeat="item in current.WindowParams" value="{{item.value}}" translate>{{'UI.ParamNames.'+item.name}}</md-option>
+</md-select>
+</md-input-container>
+<md-input-container style="margin:30px 0 0 0" ng-show="current.Action == 'SendKeys'">
+<label translate>UI.GestureEdit.Shortcut</label>
+<input id="skey" ng-model="current.HotKeyParam">
+</md-input-container>
+<md-autocomplete flex spellcheck="false" style="margin:10px 0 0 0" ng-show="current.Action == 'RunApp' || current.Action == 'OpenUrl' || current.Action == 'CopyToClipboard'" md-input-name="autocompleteField" md-input-minlength="0" md-input-maxlength="99999" md-selected-item="current.SelectedItem" md-search-text="current.SearchText" md-items="item in querySearch(current.SearchText)" md-item-text="item.value" md-require-match="false" md-floating-label="{{'UI.GestureEdit.Param' | translate}}">
+<md-item-template>
+<span md-highlight-text="current.searchText">{{item.value}}({{'UI.ParamNames.'+item.name | translate}})</span>
+</md-item-template>
+<div ng-messages="autocompleteField.$error">
+<div ng-message="required"></div>
+<div ng-message="md-require-match"></div>
+<div ng-message="minlength"></div>
+<div ng-message="maxlength"></div>
+</div>
+</md-autocomplete>
+</div>
+</div>
+</md-grid-tile>
+</md-grid-list>
+</div>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+<md-button ng-click="save()" aria-label="{{'UI.PText.alertSaveButtonText' | translate}}" translate="UI.PText.alertSaveButtonText"></md-button>
+<md-button ng-click="cancel()" aria-label="{{'UI.PText.alertCancelButtonText' | translate}}" translate="UI.PText.alertCancelButtonText"></md-button>
+</md-dialog-actions>
+</form>
+</md-dialog>

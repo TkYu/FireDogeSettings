@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FireDoge</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="favicon" rel="icon" type="image/png" href="static/favicon.png">
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/angular-material/1.1.5/angular-material.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+<link href="static/style.min.css" rel="stylesheet">
+</head>
+<body>
+<div ng-app="App" ng-controller="AppCtrl" id="popupContainer" layout="row" md-theme="{{theme}}" layout-fill ng-cloak>
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" role="sidenav" md-disable-backdrop="true" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+<md-content role="navigation">
+<md-list ng-repeat="section in uidata.sidenav.sections">
+<md-list-item ng-click="section.expand = !section.expand">
+<p class="md-subheader md-primary">{{'UI.SectionNames.'+section.name | translate}}</p>
+<span flex></span>
+<md-icon class="md-primary md-icon-button">{{section.expand ? 'arrow_drop_up' : 'arrow_drop_down'}}</md-icon>
+</md-list-item>
+<md-list-item ng-show="section.expand" ng-repeat="action in section.actions" ng-click="scrollTo(action.name)">
+<md-icon>{{action.icon}}</md-icon>
+<p class="md-body-2">{{'UI.ActionNames.'+action.name | translate}}</p>
+<span flex></span>
+<md-icon>chevron_right</md-icon>
+</md-list-item>
+</md-list></md-content>
+</md-sidenav>
+<section layout="column" role="main" flex>
+<md-toolbar role="toolbar">
+<div class="md-toolbar-tools">
+<md-button class="md-icon-button" ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
+<md-icon>menu</md-icon>
+</md-button>
+<h4 class="md-title" translate>UI.Title</h4>
+<span flex></span>
+<md-button class="md-icon-button" ng-repeat="button in uidata.toolbar.buttons" aria-label="{{button.name}}" ng-click="AddGesture($event)">
+<md-tooltip>{{'UI.ButtonText.AddGesture' | translate}}</md-tooltip>
+<md-icon>{{button.icon}}</md-icon>
+</md-button>
+<md-menu md-position-mode="target-right target" ng-disabled="current.IsLoadingLanguage" ng-repeat="menu in uidata.toolbar.menus">
+<md-button class="md-icon-button" aria-label="{{menu.name}}" ng-click="$mdMenu.open($event)">
+<md-icon>{{menu.icon}}</md-icon>
+</md-button>
+<md-menu-content width="{{menu.width}}">
+<md-subheader>{{menu.name}}</md-subheader>
+<md-menu-item ng-repeat="language in menu.languages">
+<md-button layout-fill md-ink-ripple ng-click="changeLanguage(language.value)">
+<md-icon class="md-primary" md-menu-align-target>{{language.icon}}</md-icon>
+{{language.name}}
+</md-button>
+</md-menu-item>
+</md-menu-content>
+<md-button class="md-icon-button" aria-label="diagnostics" ng-click="ExportDiagnostics($event)">
+<md-tooltip>{{'UI.ButtonText.ExportDiagnostic' | translate}}</md-tooltip>
+<md-icon>cloud_download</md-icon>
+</md-button>
+</md-menu>
+</div>
+</md-toolbar>
+<section id="content" role="content" layout="column" layout-padding md-scroll-y>
+<div id="hello-world" class="setting-content">
+<md-content class="md-whiteframe-z2" ng-cloak layout-padding>
+<div layout-padding>
+<div translate>UI.InnerTexts.HelloL1</div>
+<div translate>UI.InnerTexts.HelloL2</div>
+<div translate>UI.InnerTexts.HelloL3</div>
+<div translate>UI.InnerTexts.HelloL4</div>
+<a id="openconfig" href="" ng-click="openConfigFile()" translate>UI.InnerTexts.HelloL5</a>
+</div>
+</md-content>
+</div>
+<div id="ui-enhance" class="setting-content">
+<h2 class="title" translate>UI.ActionNames.ui-enhance</h2>
+<md-content class="md-whiteframe-z1" ng-cloak layout-padding>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="DoubleClickCloseTab" aria-label="{{'UI.Controls.DoubleClickCloseTabChecked.name' | translate}}" ng-model="configs.DoubleClickCloseTabChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.DoubleClickCloseTabChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.DoubleClickCloseTabChecked.description</div>
+</md-content>
+</md-list-item>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="RightClickCloseTab" aria-label="{{'UI.Controls.RightClickCloseTabChecked.name' | translate}}" ng-model="configs.RightClickCloseTabChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.RightClickCloseTabChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.RightClickCloseTabChecked.description</div>
+</md-content>
+</md-list-item>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="HoverActivateTab" aria-label="{{'UI.Controls.HoverActivateTabChecked.name' | translate}}" ng-model="configs.HoverActivateTabChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.HoverActivateTabChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.HoverActivateTabChecked.description</div>
+</md-content>
+</md-list-item>
+<md-input-container ng-show="configs.HoverActivateTabChecked == true" class="form-inline leftjyuuhachi">
+<md-icon>forward_5</md-icon>
+<label translate>UI.Controls.HoverActivateTabDelay.name</label>
+<input type="number" step="any" ng-disabled="configs.HoverActivateTabChecked == false" ng-model="configs.HoverActivateTabDelay" name="rate" min="1" max="99999999">
+<div class="form-control-static text-muted" translate>UI.Controls.HoverActivateTabDelay.description</div>
+</md-input-container>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="HoverTabSwitch" aria-label="{{'UI.Controls.HoverTabSwitchChecked.name' | translate}}" ng-model="configs.HoverTabSwitchChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.HoverTabSwitchChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.HoverTabSwitchChecked.description</div>
+</md-content>
+</md-list-item>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="RightTabSwitch" aria-label="{{'UI.Controls.RightTabSwitchChecked.name' | translate}}" ng-model="configs.RightTabSwitchChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.RightTabSwitchChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.RightTabSwitchChecked.description</div>
+</md-content>
+</md-list-item>
+<md-input-container class="form-inline leftjyuuhachi">
+<md-icon>forward_5</md-icon>
+<label translate>UI.Controls.DPI.name</label>
+<input type="number" step="any" ng-model="configs.DPI" name="rate" min="1" max="99999999">
+<div class="form-control-static text-muted" translate>UI.Controls.DPI.description</div>
+</md-input-container>
+</md-content>
+</div>
+<div id="base-setting" class="setting-content">
+<h2 class="title" translate>UI.ActionNames.base-setting</h2>
+<md-content class="md-whiteframe-z1" ng-cloak layout-padding>
+<md-input-container class="form-inline leftjyuuhachi" style="margin-top:30px">
+<md-icon>face</md-icon>
+<label translate>UI.Controls.BossKey.name</label>
+<input id="bosskey" ng-model="configs.BossKey">
+<div class="form-control-static text-muted" translate>UI.Controls.BossKey.description</div>
+</md-input-container>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="MakePortable" aria-label="{{'UI.Controls.MakePortableChecked.name' | translate}}" ng-model="configs.MakePortableChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.MakePortableChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.MakePortableChecked.description</div>
+</md-content>
+</md-list-item>
+</md-content>
+</div>
+<div id="append-command" class="setting-content">
+<h2 class="title" translate>UI.ActionNames.append-command</h2>
+<md-content class="md-whiteframe-z1" ng-cloak layout-padding>
+<div class="text-muted leftjyuuhachi" translate>UI.InnerTexts.AppendCommandL1</div>
+<md-list flex>
+<md-list-item class="md-1-line" ng-repeat="item in configs.AppendCommand" ng-click="null">
+<p>{{ item }}</p>
+<md-button class="md-secondary md-icon-button" ng-click="RemoveAppendCommand(item)" aria-label="call">
+<md-icon>clear</md-icon>
+</md-button>
+</md-list-item>
+</md-list>
+<md-input-container class="leftjyuuhachi">
+<label translate>UI.InnerTexts.AppendCommandL2</label>
+<input ng-model="current.AppendCommand">
+<span class="input-group-btn">
+<md-button class="md-raised md-primary add_section" ng-click="AddAppendCommand()" aria-label="{{'UI.InnerTexts.AppendCommandL2' | translate}}">{{'UI.ButtonText.Add' | translate}}</md-button>
+</span>
+</md-input-container>
+</md-content>
+</div>
+<div id="start-run" class="setting-content">
+<h2 class="title" translate>UI.ActionNames.start-run</h2>
+<md-content class="md-whiteframe-z1" ng-cloak layout-padding>
+<div class="text-muted leftjyuuhachi" translate>UI.InnerTexts.StartRunL1</div>
+<md-list flex>
+<md-list-item class="md-1-line" ng-repeat="item in configs.StartRun" ng-click="null">
+<p>{{ item }}</p>
+<md-button class="md-secondary md-icon-button" ng-click="RemoveStartRun(item)" aria-label="call">
+<md-icon>clear</md-icon>
+</md-button>
+</md-list-item>
+</md-list>
+<md-input-container class="leftjyuuhachi">
+<label translate>UI.InnerTexts.StartRunL2</label>
+<input ng-model="current.StartRun">
+<span class="input-group-btn">
+<md-button class="md-raised md-primary add_section" ng-click="AddStartRun()" aria-label="{{'UI.InnerTexts.StartRunL2' | translate}}">{{'UI.ButtonText.Add' | translate}}</md-button>
+</span>
+</md-input-container>
+</md-content>
+</div>
+<div id="end-run" class="setting-content">
+<h2 class="title" translate>UI.ActionNames.end-run</h2>
+<md-content class="md-whiteframe-z1" ng-cloak layout-padding>
+<div class="text-muted leftjyuuhachi" translate>UI.InnerTexts.EndRunL1</div>
+<md-list flex>
+<md-list-item class="md-1-line" ng-repeat="item in configs.EndRun" ng-click="null">
+<p>{{ item }}</p>
+<md-button class="md-secondary md-icon-button" ng-click="RemoveEndRun(item)" aria-label="call">
+<md-icon>clear</md-icon>
+</md-button>
+</md-list-item>
+</md-list>
+<md-input-container class="leftjyuuhachi">
+<label translate>UI.InnerTexts.EndRunL2</label>
+<input ng-model="current.EndRun">
+<span class="input-group-btn">
+<md-button class="md-raised md-primary add_section" ng-click="AddEndRun()" aria-label="{{'UI.InnerTexts.EndRunL2' | translate}}">{{'UI.ButtonText.Add' | translate}}</md-button>
+</span>
+</md-input-container>
+</md-content>
+</div>
+<div id="key-transform" class="setting-content">
+<h2 class="title" translate>UI.ActionNames.key-transform</h2>
+<md-content class="md-whiteframe-z1" ng-cloak layout-padding>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="KeyTransform" aria-label="{{'UI.Controls.KeyTransformChecked.description' | translate}}" ng-model="configs.KeyTransformChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.KeyTransformChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.KeyTransformChecked.description</div>
+</md-content>
+</md-list-item>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="KeyRepeat" aria-label="{{'UI.Controls.KeyRepeatChecked.description' | translate}}" ng-disabled="configs.KeyTransformChecked == false" ng-model="configs.KeyRepeatChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.KeyRepeatChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.KeyRepeatChecked.description</div>
+</md-content>
+</md-list-item>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="KeyIgnoreEdit" aria-label="{{'UI.Controls.KeyIgnoreEditChecked.description' | translate}}" ng-disabled="configs.KeyTransformChecked == false" ng-model="configs.KeyIgnoreEditChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.KeyIgnoreEditChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.KeyIgnoreEditChecked.description</div>
+</md-content>
+</md-list-item>
+<md-list-item ng-show="configs.KeyTransformChecked == true" class="md-1-line">
+<div class="text" translate>UI.InnerTexts.TransListL1</div>
+</md-list-item>
+<md-content ng-show="configs.KeyTransformChecked == true">
+<md-list flex>
+<md-list-item class="md-1-line" ng-repeat="item in configs.TransformList" ng-click="null">
+<p>{{ item }}</p>
+<md-button class="md-secondary md-icon-button" ng-click="RemoveTransform(item)" aria-label="call">
+<md-icon>clear</md-icon>
+</md-button>
+</md-list-item>
+</md-list>
+</md-content>
+<md-input-container ng-show="configs.KeyTransformChecked == true" class="leftjyuuhachi">
+<label translate>UI.InnerTexts.TransListL2</label>
+<input ng-model="current.Transform">
+<span class="input-group-btn">
+<md-button class="md-raised md-primary add_section" ng-click="AddTransform()" aria-label="{{'UI.InnerTexts.TransListL2' | translate}}">{{'UI.ButtonText.Add' | translate}}</md-button>
+</span>
+</md-input-container>
+</md-content>
+</div>
+<div id="mouse-gesture" class="setting-content">
+<h2 class="title" translate>UI.ActionNames.mouse-gesture</h2>
+<md-content class="md-whiteframe-z1" ng-cloak layout-padding>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="MouseGesture" aria-label="{{'UI.Controls.MouseGestureChecked.description' | translate}}" ng-model="configs.MouseGestureChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.MouseGestureChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.MouseGestureChecked.description</div>
+</md-content>
+</md-list-item>
+<div class="form-inline leftjyuuhachi">
+<div class="form-control-static" translate>UI.Controls.MouseGestureColor.name</div>
+<div id="colorpicker" class="input-group">
+<input colorcase ng-disabled="!configs.MouseGestureChecked" ng-model="configs.MouseGestureColor" class="form-control">
+<span class="input-group-addon"><i></i></span>
+</div>
+</div>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="GestureResult" aria-label="{{'UI.Controls.MouseGestureChecked.description' | translate}}" ng-disabled="!configs.MouseGestureChecked" ng-model="configs.GestureResultChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.GestureResultChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.GestureResultChecked.description</div>
+</md-content>
+</md-list-item>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="GestureTrack" aria-label="{{'UI.Controls.GestureTrackChecked.description' | translate}}" ng-disabled="!configs.MouseGestureChecked" ng-model="configs.GestureTrackChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.GestureTrackChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.GestureTrackChecked.description</div>
+</md-content>
+</md-list-item>
+<md-slider-container class="form-inline leftjyuuhachi">
+<md-icon>forward_10</md-icon>
+<label translate>UI.Controls.TrackThickness.name</label>
+<md-slider flex class="md-primary" md-discrete ng-disabled="!configs.MouseGestureChecked" ng-model="configs.TrackThickness" step="1" min="1" max="10" aria-label="{{'UI.Controls.TrackThickness.description' | translate}}">
+</md-slider>
+</md-slider-container>
+<div class="form-control-static text-muted slider-label" translate>UI.Controls.TrackThickness.description</div>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="TrackArrow" aria-label="{{'UI.Controls.TrackArrowChecked.description' | translate}}" ng-disabled="!configs.MouseGestureChecked" ng-show="configs.GestureTrackChecked == true" ng-model="configs.TrackArrowChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.TrackArrowChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.TrackArrowChecked.description</div>
+</md-content>
+</md-list-item>
+<md-list-item class="md-2-line">
+<md-checkbox class="md-primary" id="TrainingMode" aria-label="{{'UI.Controls.TrainingModeChecked.description' | translate}}" ng-disabled="!configs.MouseGestureChecked" ng-model="configs.TrainingModeChecked"></md-checkbox>
+<md-content class="md-list-item-text" layout="column">
+<h3 class="md-body-2" translate>UI.Controls.TrainingModeChecked.name</h3>
+<div class="text-muted" translate>UI.Controls.TrainingModeChecked.description</div>
+</md-content>
+</md-list-item>
+<md-slider-container class="form-inline leftjyuuhachi">
+<md-icon>forward_30</md-icon>
+<label translate>UI.Controls.GestureSensitive.name</label>
+<md-slider ng-disabled="!configs.MouseGestureChecked" ng-model="configs.GestureSensitive" min="1" max="100" aria-label="{{'UI.Controls.MouseGestureChecked.description' | translate}}" class="md-primary"></md-slider>
+<label>{{configs.GestureSensitive}}</label>
+</md-slider-container>
+<div class="form-control-static text-muted slider-label" translate>UI.Controls.GestureSensitive.description</div>
+</md-content>
+</div>
+<div id="gesture-action" class="setting-content">
+<h2 class="title" translate>UI.ActionNames.gesture-action</h2>
+<md-content class="md-whiteframe-z1" ng-cloak layout-padding>
+<md-content class="md-list-item-text" layout="column" ng-show="configs.MouseGestureChecked == false">
+<h2 translate>UI.InnerTexts.GestureL1</h2>
+</md-content>
+<md-content ng-show="configs.MouseGestureChecked">
+<md-list flex>
+<md-list-item class="md-2-line" ng-repeat="item in current.GestureList" ng-click="EditGesture($event,item)">
+<img ng-src="data:image/png;base64,{{item.image}}" class="md-avatar" style="border-radius:0">
+<div class="md-list-item-text" layout="column">
+<h3>{{ item.name }}</h3>
+<h4>{{'UI.ParamNames.'+item.action | translate}} &lt;&lt; {{item.display}}</h4>
+</div>
+<md-button class="md-secondary md-icon-button" ng-click="RemoveGesture(item)" aria-label="call">
+<md-icon>clear</md-icon>
+</md-button>
+</md-list-item>
+</md-list>
+<md-button class="md-raised md-primary add_section" ng-disabled="!configs.MouseGestureChecked" ng-click="AddGesture($event)" aria-label="{{'UI.ButtonText.AddGesture' | translate}}">{{'UI.ButtonText.AddGesture' | translate}}</md-button>
+</md-content>
+</md-content>
+</div>
+<div id="gesture-sync" class="setting-content">
+<h2 class="title" translate>UI.ActionNames.gesture-sync</h2>
+<md-content class="md-whiteframe-z1" ng-cloak layout-padding>
+<md-input-container class="leftjyuuhachi" style="margin-top:30px">
+<label translate>UI.Controls.SyncToken.name</label>
+<input ng-model="configs.SyncToken">
+<span class="input-group-btn">
+<md-button class="md-raised md-primary add_section" aria-label="{{'UI.Controls.SyncToken.description' | translate}}">{{'UI.ButtonText.Sync' | translate}}</md-button>
+</span>
+</md-input-container>
+</md-content>
+</div>
+<div id="check-update" class="setting-content">
+<h2 class="title" translate>UI.ActionNames.check-update</h2>
+<md-content class="md-whiteframe-z1" ng-cloak layout-padding>
+<div class="leftjyuuhachi">
+<label translate>UI.Controls.Branch.name</label>
+<md-select ng-model="configs.Branch" aria-label="{{'UI.Controls.Branch.description' | translate}}" style="width:50%">
+<md-option value="Stable" translate>UI.Controls.Branch.Stable</md-option>
+<md-option value="Beta" translate>UI.Controls.Branch.Beta</md-option>
+<md-option value="Dev" translate>UI.Controls.Branch.Dev</md-option>
+<md-option value="Nightly" translate>UI.Controls.Branch.Nightly</md-option>
+<md-option value="ESR" translate>UI.Controls.Branch.ESR</md-option>
+</md-select>
+<label translate="UI.InnerTexts.UpdateL1" translate-values="{ product: 'Firefox', version: '{{current.LocalFFVersion}}', nversion: '{{current.OnlineFFVersion}}'}"></label><br>
+<label translate="UI.InnerTexts.UpdateL1" translate-values="{ product: 'FireDoge', version: '{{current.LocalFDVersion}}', nversion: '{{current.OnlineFDVersion}}'}"></label>
+<span class="input-group-btn">
+<md-button class="md-raised md-primary add_section" ng-click="doUpdate($event)" ng-show="current.NeedUpdate" aria-label="{{'UI.ButtonText.Update' | translate}}">{{'UI.ButtonText.Update' | translate}}</md-button>
+</span>
+</div>
+</md-content>
+</div>
+</section>
+</section>
+<md-content id="loading-mask" style="display:block" ng-show="Busy == true">
+<div class="loader" style="display:block">
+<div class="loader-inner box1"></div>
+<div class="loader-inner box2"></div>
+<div class="loader-inner box3"></div>
+</div>
+</md-content>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+<script src="https://cdn.bootcss.com/jszip/3.1.5/jszip.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.5.5/angular.min.js"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.5.5/angular-animate.min.js"></script>
+<script src="https://cdn.bootcss.com/angular-translate/2.16.0/angular-translate.min.js"></script>
+<script src="https://cdn.bootcss.com/angular-translate/2.6.0/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.5.5/angular-aria.min.js"></script>
+<script src="https://cdn.bootcss.com/angular-material/1.1.5/angular-material.min.js"></script>
+<script src="static/setting.gc.min.js"></script>
+</body>
+</html>
